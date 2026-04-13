@@ -1,24 +1,55 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
+import type { Locale } from "@/lib/i18n";
 
 const buLinks = [
-  { href: "/business-units/heavy-industry", label: "Heavy Industry", accent: "hover:text-gold" },
-  { href: "/business-units/machining-services", label: "Machining Services", accent: "hover:text-steel" },
-  { href: "/business-units/stock-finance", label: "Stock & Finance", accent: "hover:text-warm-gold" },
+  { slug: "heavy-industry",    label: "Heavy Industry",     accent: "hover:text-gold" },
+  { slug: "machining-services", label: "Machining Services", accent: "hover:text-steel" },
+  { slug: "stock-finance",     label: "Stock & Finance",    accent: "hover:text-warm-gold" },
 ];
 
-const siteLinks = [
-  { href: "/solutions", label: "Lösungen" },
-  { href: "/sectors", label: "Branchen" },
-  { href: "/quality", label: "Qualität" },
-  { href: "/about", label: "Über uns" },
-  { href: "/contact", label: "Kontakt" },
-];
+const footerT = {
+  de: {
+    tagline:      "Ein Partner. Die vollständige Lieferkette.",
+    partOf:       "Teil von",
+    buHeading:    "Geschäftsbereiche",
+    navHeading:   "Navigation",
+    contactHeading: "Kontakt",
+    copyright:    "Teil der ERHO Holding Group.",
+    nav: [
+      { href: "/solutions", label: "Lösungen" },
+      { href: "/sectors",   label: "Branchen" },
+      { href: "/quality",   label: "Qualität" },
+      { href: "/about",     label: "Über uns" },
+      { href: "/contact",   label: "Kontakt" },
+    ],
+    srFooter: "Fußzeile",
+  },
+  en: {
+    tagline:      "One Partner. The Complete Supply Chain.",
+    partOf:       "Part of",
+    buHeading:    "Business Units",
+    navHeading:   "Navigation",
+    contactHeading: "Contact",
+    copyright:    "Part of ERHO Holding Group.",
+    nav: [
+      { href: "/solutions", label: "Solutions" },
+      { href: "/sectors",   label: "Sectors" },
+      { href: "/quality",   label: "Quality" },
+      { href: "/about",     label: "About" },
+      { href: "/contact",   label: "Contact" },
+    ],
+    srFooter: "Footer",
+  },
+};
 
-export function Footer() {
+export function Footer({ locale }: { locale: Locale }) {
+  const t = footerT[locale];
+  const p = (path: string) => `/${locale}${path}`;
+
   return (
     <footer className="bg-navy text-white/70" aria-labelledby="footer-heading">
-      <h2 id="footer-heading" className="sr-only">Fußzeile</h2>
+      <h2 id="footer-heading" className="sr-only">{t.srFooter}</h2>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 lg:gap-8">
@@ -34,26 +65,28 @@ export function Footer() {
               </div>
               <div className="flex flex-col leading-none">
                 <span className="font-display text-white text-[15px] font-semibold tracking-wide">ERHO</span>
-                <span className="font-body text-white/50 text-[9px] tracking-[0.22em] uppercase">Industry Solutions</span>
+                <span className="font-body text-white/50 text-[9px] tracking-[0.22em] uppercase">
+                  {locale === "de" ? "Industrietechnik" : "Industry Solutions"}
+                </span>
               </div>
             </div>
-            <p className="font-body text-xs leading-relaxed text-white/45 max-w-[180px]">
-              Ein Partner. Die vollständige Lieferkette.
+            <p className="font-body text-xs leading-relaxed text-white/45 max-w-45">
+              {t.tagline}
             </p>
             <div className="mt-5 inline-flex items-center gap-2 border border-white/10 rounded-sm px-3 py-1.5">
-              <span className="font-body text-[10px] text-white/30 uppercase tracking-widest">Teil von</span>
+              <span className="font-body text-[10px] text-white/30 uppercase tracking-widest">{t.partOf}</span>
               <span className="font-display text-[11px] text-white/50 font-semibold tracking-wide">ERHO Holding Group</span>
             </div>
           </div>
 
           {/* Business Units */}
           <div>
-            <h3 className="font-body text-[10px] uppercase tracking-widest text-gold mb-4">Geschäftsbereiche</h3>
+            <h3 className="font-body text-[10px] uppercase tracking-widest text-gold mb-4">{t.buHeading}</h3>
             <ul className="space-y-3" role="list">
-              {buLinks.map(({ href, label, accent }) => (
-                <li key={href}>
+              {buLinks.map(({ slug, label, accent }) => (
+                <li key={slug}>
                   <Link
-                    href={href}
+                    href={p(`/business-units/${slug}`)}
                     className={`font-body text-sm text-white/50 transition-colors duration-200 ${accent}`}
                   >
                     <span className="text-[10px] text-white/25 uppercase tracking-widest font-mono block leading-none mb-0.5">ERHO</span>
@@ -66,13 +99,12 @@ export function Footer() {
 
           {/* Site links */}
           <div>
-            <h3 className="font-body text-[10px] uppercase tracking-widest text-gold mb-4">Navigation</h3>
-
+            <h3 className="font-body text-[10px] uppercase tracking-widest text-gold mb-4">{t.navHeading}</h3>
             <ul className="space-y-3" role="list">
-              {siteLinks.map(({ href, label }) => (
+              {t.nav.map(({ href, label }) => (
                 <li key={href}>
                   <Link
-                    href={href}
+                    href={p(href)}
                     className="font-body text-sm text-white/50 hover:text-gold transition-colors duration-200"
                   >
                     {label}
@@ -84,7 +116,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-body text-[10px] uppercase tracking-widest text-gold mb-4">Kontakt</h3>
+            <h3 className="font-body text-[10px] uppercase tracking-widest text-gold mb-4">{t.contactHeading}</h3>
             <ul className="space-y-3.5" role="list">
               <li className="flex items-start gap-2.5">
                 <MapPin size={13} className="text-gold mt-0.5 shrink-0" aria-hidden="true" />
@@ -112,7 +144,7 @@ export function Footer() {
       <div className="border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="font-body text-xs text-white/22">
-            © {new Date().getFullYear()} ERHO Industry Solutions. Teil der ERHO Holding Group.
+            © {new Date().getFullYear()} {locale === "de" ? "ERHO Industrietechnik" : "ERHO Industry Solutions"}. {t.copyright}
           </p>
           <p className="font-body text-xs text-white/22">
             Rütistrasse 6, 5400 Baden, Switzerland

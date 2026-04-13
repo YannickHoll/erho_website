@@ -18,7 +18,9 @@ export interface HeroSlide {
 export interface Sector {
   slug: string;
   name: string;
+  nameEn?: string;
   tagline: string;
+  taglineEn?: string;
   description: string;
   challenge: string;
   solution: string;          // "The ERHO complete package" paragraph
@@ -36,7 +38,9 @@ export const sectors: Sector[] = [
   {
     slug: "heat-exchangers",
     name: "Prozess-Wärmetauscher",
+    nameEn: "Process Heat Exchangers",
     tagline: "Vollständige Komponentensätze für Rohrbündel- und Plattenwärmetauscher.",
+    taglineEn: "Complete component sets for shell-and-tube and plate heat exchangers.",
     description:
       "Die Beschaffung von Wärmetauschern ist per se fragmentiert. Rohrplatten, Rohre, Trennwände, Stutzen und Flansche kommen typischerweise von verschiedenen Speziallieferanten — jeder mit eigenen Lieferzeiten, Qualitätssystemen und Dokumentationsanforderungen.",
     challenge:
@@ -75,7 +79,9 @@ export const sectors: Sector[] = [
   {
     slug: "valves-pipelines",
     name: "Armaturen & Armaturengruppen",
+    nameEn: "Valves & Valve Assemblies",
     tagline: "Vollständige Komponentensätze für Schieber-, Kugel-, Schmetterlings- und Rückschlagarmaturen.",
+    taglineEn: "Complete component sets for gate, ball, butterfly and check valves.",
     description:
       "Die Beschaffung von Armaturengruppen umfasst mehrere Präzisionskomponenten aus mehreren Spezialquellen. Die Verwaltung dieser Fragmentierung — insbesondere unter engen Projektzeitplänen — schafft Risiken auf jedem Schritt.",
     challenge:
@@ -112,7 +118,9 @@ export const sectors: Sector[] = [
   {
     slug: "compressors-pumps",
     name: "Kompressoren & Pumpen",
+    nameEn: "Compressors & Pumps",
     tagline: "Vollständige Komponentensätze für Kolben-, Schrauben-, Kreisel- und Drehkolbenmaschinen.",
+    taglineEn: "Complete component sets for reciprocating, screw, centrifugal and rotary machines.",
     description:
       "Kompressoren- und Pumpenhersteller arbeiten mit einer anspruchsvollen Mischung aus gegossenen und zerspanten Komponenten — jede mit engen Toleranzen, Oberflächengüteanforderungen und Werkstoffzertifizierungen. Die Komponentenbasis variiert je nach Maschinentyp erheblich.",
     challenge:
@@ -150,7 +158,9 @@ export const sectors: Sector[] = [
   {
     slug: "plastics-extrusion",
     name: "Kunststoff & Extrusionsanlagen",
+    nameEn: "Plastics & Extrusion Machinery",
     tagline: "Verschleissfeste Zylinder, Schnecken und Präzisionskomponenten für Kunststoffverarbeitungsmaschinen.",
+    taglineEn: "Wear-resistant cylinders, screws and precision components for plastics processing machines.",
     description:
       "Extrusionsmaschinen sind auf hochverschleissfeste, hochpräzise Komponenten angewiesen, die unter extremem thermischem und mechanischem Stress standhalten müssen. Zylinder und Schnecken erfordern insbesondere Sonderwerkstoffe und Oberflächenbehandlungen.",
     challenge:
@@ -183,7 +193,9 @@ export const sectors: Sector[] = [
   {
     slug: "oil-gas",
     name: "Öl & Gas",
+    nameEn: "Oil & Gas",
     tagline: "Drucktragende Komponenten für Upstream-, Midstream- und Downstream-Anwendungen.",
+    taglineEn: "Pressure-bearing components for upstream, midstream and downstream applications.",
     description:
       "Der Öl- und Gassektor erfordert Komponenten, die die strengsten Anforderungen an Druck, Temperatur und Korrosionsbeständigkeit erfüllen. Wir liefern geschmiedete und gegossene Komponenten, die API-, ASME- und EN-Normen entsprechen.",
     challenge:
@@ -212,7 +224,9 @@ export const sectors: Sector[] = [
   {
     slug: "naval-marine",
     name: "Schiffbau & Marine",
+    nameEn: "Naval & Marine",
     tagline: "Klassifikationsgesellschafts-zertifizierte Schmiedestücke für Schiffe, Offshore-Plattformen und Marinebauten.",
+    taglineEn: "Classification-society-certified forgings for vessels, offshore platforms and naval structures.",
     description:
       "Marine- und Marineanwendungen erfordern Komponenten, die von Klassifikationsgesellschaften wie DNV GL, Bureau Veritas und Lloyd's Register zertifiziert sind. Wir liefern Schmiedestücke und Gussteile mit den erforderlichen Klassenzertifikaten.",
     challenge:
@@ -240,7 +254,9 @@ export const sectors: Sector[] = [
   {
     slug: "mining",
     name: "Bergbau",
+    nameEn: "Mining",
     tagline: "Schwere Schmiedestücke für den kontinuierlichen Hochlast-Betrieb.",
+    taglineEn: "Heavy forgings for continuous high-load operations.",
     description:
       "Bergbauausrüstung arbeitet unter extremen Bedingungen — hohe Lasten, abrasive Umgebungen und kontinuierliche Betriebszyklen. ERHO Industry Solutions liefert die schweren Schmiedestücke und Gussteile, die Brecher, Mühlen und Fördersysteme am Laufen halten.",
     challenge:
@@ -265,7 +281,9 @@ export const sectors: Sector[] = [
   {
     slug: "gearbox-transmission",
     name: "Getriebe & Antrieb",
+    nameEn: "Gearboxes & Drives",
     tagline: "Präzisionsschmiedestücke für Getriebe in industriellen, Wind- und Meeresantrieben.",
+    taglineEn: "Precision forgings for gearboxes in industrial, wind and marine drives.",
     description:
       "Getriebe- und Antriebskomponenten erfordern enge Masshaltigkeit, sauberen Stahl und gleichbleibende mechanische Eigenschaften nach der Wärmebehandlung. Wir liefern gewalzte und freiformgeschmiedete Schmiedestücke in Einsatz- und Vergütungsgüten.",
     challenge:
@@ -291,6 +309,7 @@ export const sectors: Sector[] = [
   {
     slug: "energy-power",
     name: "Energie & Kraftwerke",
+    nameEn: "Energy & Power Generation",
     heroImages: [
       { src: "/images/AdobeStock_670995999.jpeg" },
       { src: "/images/AdobeStock_299842359.jpeg" },
@@ -298,6 +317,7 @@ export const sectors: Sector[] = [
     ],
     heroOverlay: 60,
     tagline: "Hochintegrierte Schmiedestücke für Turbinen, Generatoren und Kraftwerksausrüstung.",
+    taglineEn: "High-integrity forgings for turbines, generators and power plant equipment.",
     description:
       "Stromerzeugungsanlagen arbeiten über Jahrzehnte unter extremen Temperaturen und Drücken. Komponentenintegrität ist nicht verhandelbar. Wir liefern Turbinenscheiben, Rotorwellen und Generatorschmiedestücke nach den anspruchsvollsten Spezifikationen.",
     challenge:

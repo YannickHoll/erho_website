@@ -95,6 +95,10 @@ const pillars = [
     title: "Technisches Know-how & Qualitätsmanagement",
     body: "Wir sprechen die Sprache Ihrer Ingenieure und Ihrer Qualitätsabteilung. Wir prüfen Zeichnungen, hinterfragen Spezifikationen wenn wir Risiken sehen, empfehlen Werkstoffe, erstellen Prüfpläne und verwalten die EN-10204-Dokumentation von A bis Z. Die technische Last, die sonst auf Ihrem Qualitätsteam lastet — die tragen wir. Unsere Vor-Ort-QA-Präsenz bei globalen Lieferantenwerken bedeutet europäische Verantwortlichkeit, unabhängig davon, wo die Komponente gefertigt wird.",
   },
+  {
+    title: "Schnelle Lieferung dank Lager & Rohteilverfügbarkeit",
+    body: "Unser strategisches Lager hält qualifizierte Rohlinge, Schmiedehalbzeuge und Stabstahlsortimente permanent auf Lager — bearbeitungsbereit und zertifiziert. Das bedeutet: kürzere Lieferzeiten, weniger Kapitalbindung auf Ihrer Seite und ein Puffer gegen Marktengpässe. Wenn Ihr Projekt läuft, läuft auch unsere Lieferkette — ohne Wartezeiten.",
+  },
 ];
 
 const businessUnits = [
@@ -103,6 +107,7 @@ const businessUnits = [
     href: "/business-units/heavy-industry",
     accent: "border-gold",
     accentText: "text-gold",
+    image: "/images/AdobeStock_1944076883.jpeg",
     desc: "Beschaffung und Lieferung von Freiformschmiedestücken, nahtlosen Ringen, Gussteilen und Rohteilen aus qualifizierten europäischen und globalen Lieferantennetzwerken.",
     services: ["Freiformschmiedestücke", "Ringwalzen", "Sand- & Feinguss", "EN-10204-3.1/3.2-Dokumentation"],
   },
@@ -111,6 +116,7 @@ const businessUnits = [
     href: "/business-units/machining-services",
     accent: "border-steel",
     accentText: "text-steel",
+    image: "/images/AdobeStock_Machining.jpeg",
     desc: "CNC-Präzisionszerspanung von Schmiedestücken, Gussteilen und Stabstahl nach Ihrer exakten Zeichnung — fertige Komponenten für Ihre Montagelinie.",
     services: ["CNC-Drehen bis ⌀2.500 mm", "Fräsen, Bohren & Schleifen", "Prototyp bis Serie", "Maßberichte & KMM"],
   },
@@ -119,6 +125,7 @@ const businessUnits = [
     href: "/business-units/stock-finance",
     accent: "border-warm-gold",
     accentText: "text-warm-gold",
+    image: "/images/Forging_Stock.jpeg",
     desc: "Strategische Lagerhaltung, Konsignationslager und Beschaffungsfinanzierung — damit Ihr Kapital frei bleibt und Ihre Lieferkette nie zum Stillstand kommt.",
     services: ["Strategisches Lager: Flansche & Stabstahl", "Konsignationslager", "Beschaffungsfinanzierung", "Zahlungsaufschubstrukturen"],
   },
@@ -417,50 +424,26 @@ export default function HomePage() {
             <span className="gold-rule" aria-hidden="true" />
           </ScrollReveal>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
-            {businessUnits.map(({ name, href, accent, accentText, desc, services }, i) => (
+            {businessUnits.map(({ name, href, accent, accentText, image, desc, services }, i) => (
               <ScrollReveal key={name} delay={i * 80}>
-                {i === 0 ? (
-                  /* Heavy Industry — image background */
-                  <div className={`relative rounded-sm border-t-4 ${accent} overflow-hidden h-full flex flex-col`}>
-                    <Image
-                      src="/images/AdobeStock_1862058745.jpeg"
-                      alt=""
-                      fill
-                      className="object-cover object-center"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-[#1A2540]/65" aria-hidden="true" />
-                    <div className="relative z-10 p-6 flex flex-col h-full">
-                      <p className="font-mono text-[10px] uppercase tracking-widest text-white/35 mb-1">ERHO</p>
-                      <h3 className={`font-display text-lg font-semibold mb-3 ${accentText}`}>{name}</h3>
-                      <p className="font-body text-white/65 text-sm leading-relaxed mb-4 flex-1">{desc}</p>
-                      <ul className="space-y-1 mb-5" role="list">
-                        {services.map((s) => (
-                          <li key={s} className="font-body text-xs flex items-start gap-1.5">
-                            <span className={accentText} aria-hidden="true">·</span>
-                            <span className="text-white/50">{s}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <Link
-                        href={href}
-                        className={`font-body text-xs font-medium ${accentText} hover:opacity-75 transition-opacity duration-200 inline-flex items-center gap-1`}
-                      >
-                        Mehr erfahren <ArrowRight size={11} aria-hidden="true" />
-                      </Link>
-                    </div>
-                  </div>
-                ) : (
-                  /* Machining Services & Stock & Finance — plain white card */
-                  <div className={`bg-white rounded-sm border-t-4 ${accent} p-6 h-full flex flex-col`}>
-                    <p className="font-mono text-[10px] uppercase tracking-widest text-mid-gray/45 mb-1">ERHO</p>
+                <div className={`relative rounded-sm border-t-4 ${accent} overflow-hidden h-full flex flex-col`}>
+                  <Image
+                    src={image}
+                    alt=""
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-[#1A2540]/70" aria-hidden="true" />
+                  <div className="relative z-10 p-6 flex flex-col h-full">
+                    <p className="font-mono text-[10px] uppercase tracking-widest text-white/35 mb-1">ERHO</p>
                     <h3 className={`font-display text-lg font-semibold mb-3 ${accentText}`}>{name}</h3>
-                    <p className="font-body text-mid-gray text-sm leading-relaxed mb-4 flex-1">{desc}</p>
+                    <p className="font-body text-white/65 text-sm leading-relaxed mb-4 flex-1">{desc}</p>
                     <ul className="space-y-1 mb-5" role="list">
                       {services.map((s) => (
                         <li key={s} className="font-body text-xs flex items-start gap-1.5">
                           <span className={accentText} aria-hidden="true">·</span>
-                          <span className="text-mid-gray">{s}</span>
+                          <span className="text-white/50">{s}</span>
                         </li>
                       ))}
                     </ul>
@@ -468,10 +451,10 @@ export default function HomePage() {
                       href={href}
                       className={`font-body text-xs font-medium ${accentText} hover:opacity-75 transition-opacity duration-200 inline-flex items-center gap-1`}
                     >
-                      Learn more <ArrowRight size={11} aria-hidden="true" />
+                      Mehr erfahren <ArrowRight size={11} aria-hidden="true" />
                     </Link>
                   </div>
-                )}
+                </div>
               </ScrollReveal>
             ))}
           </div>
@@ -525,11 +508,12 @@ export default function HomePage() {
       {/* ── Stats Bar ─────────────────────────────────────────────────────── */}
       <section className="bg-navy border-t border-white/8 py-14">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 text-center">
             {[
               { end: 3, suffix: "", label: "Geschäftsbereiche" },
-              { end: 9, suffix: "", label: "Bediente Branchen" },
+              { end: 9, suffix: "+", label: "Bediente Marktsegmente" },
               { end: 20, suffix: "+", label: "Qualifizierte Lieferantenpartner" },
+              { end: 3, suffix: "", label: "Standorte in Europa" },
               { end: 24, suffix: "h", label: "Reaktionszeit auf jede Anfrage" },
             ].map(({ end, suffix, label }) => (
               <div key={label}>
